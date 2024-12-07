@@ -86,10 +86,15 @@
 
                         </div>
                         <div v-show="typeMsg == 1581">
-                            <div class="img_top">
-                                <img src="@/assets/image/huzhao_1.jpg" @click="lookClick('huzhao_1.jpg')" alt="护照首页">
-                                <img src="@/assets/image/huzhao_2.jpg" @click="lookClick('huzhao_2.jpg')" alt="护照内容页">
-                                <img src="@/assets/image/huzhao_3.jpg" @click="lookClick('huzhao_3.jpg')" alt="护照内容页">
+                            <div style="padding-bottom:280px;">
+                                <div class="img_top">
+                                    <img src="@/assets/image/huzhao_1.jpg" @click="lookClick('huzhao_1.jpg')"
+                                        alt="护照首页">
+                                    <img src="@/assets/image/huzhao_2.jpg" @click="lookClick('huzhao_2.jpg')"
+                                        alt="护照内容页">
+                                    <img src="@/assets/image/huzhao_3.jpg" @click="lookClick('huzhao_3.jpg')"
+                                        alt="护照内容页">
+                                </div>
                             </div>
                             <div class="txt_bottom">
                                 <h4>护照整本彩色扫描件--<span class="span_red">PDF文档</span>：</h4>
@@ -101,14 +106,17 @@
                             </div>
                         </div>
                         <div v-show="typeMsg == 1583">
-                            <div class="img_top">
-                                <img src="@/assets/image/huzhao_1.jpg" @click="lookClick('huzhao_1.jpg')" alt="护照首页">
-                                <img src="@/assets/image/huzhao_2.jpg" @click="lookClick('huzhao_2.jpg')" alt="护照内容页">
-                                <img src="@/assets/image/huzhao_3.jpg" @click="lookClick('huzhao_3.jpg')" alt="护照内容页">
+                            <div class="img_top" style="padding-bottom: 180px;">
+                                <img src="@/assets/image/huzhao1-old.png" @click="lookClick('huzhao1-old.png')"
+                                    alt="护照首页">
+                                <img src="@/assets/image/huzhao2-old.png" @click="lookClick('huzhao2-old.png')"
+                                    alt="护照内容页">
+                                <img src="@/assets/image/huzhao3-old.png" @click="lookClick('huzhao3-old.png')"
+                                    alt="护照内容页">
                             </div>
                             <div class="txt_bottom">
                                 <h4>旧护照彩色扫描件--<span class="span_red">PDF文档</span>：</h4>
-                                <p>1）如有旧护照请一并提供，需包含护照所有信息页、备注页、签证页、盖章页以及签名页（空白页无需扫描）</p>
+                                <p>1）如有旧护照请一并提供，扫描件需包含护照个人信息页、换发页、所有贴有签证标签、盖有出入境章及签名页，空白页无需扫描</p>
                                 <p>2）所有页面需扫描保存为一个PDF文档，且页面必须清晰完整，不歪斜，无杂物（不可以拍照）</p>
                             </div>
                         </div>
@@ -176,7 +184,7 @@
 
                                 <div>
                                     <p>1、银行流水对账单：</p>
-                                    <p>1）本人名下近6个月工资卡银行流水对账单彩色扫描件，需加盖银行公章：</p>
+                                    <p>1）本人名下近6个月工资卡银行流水对账单彩色扫描件，需加盖银行公章</p>
                                     <p>2）有多笔进出往来账目明细</p>
                                     <p>3）余额需大于人民币3万元以上，勿在送签前存入大笔资金</p>
                                 </div>
@@ -465,10 +473,14 @@ const beforeRead = (file: File | File[], type: number) => {
         if (res.code == 0) {
             getList()
         } else {
-            showToast('文件上传失败！');
+            setTimeout(() => {
+                showToast('文件上传失败！');
+            }, 100)
         }
     }).catch(() => {
-        showToast('文件上传失败！');
+        setTimeout(() => {
+            showToast('文件上传失败！');
+        }, 100)
     }).finally(() => {
         toast1.close();
     })
