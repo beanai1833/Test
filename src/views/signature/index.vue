@@ -202,11 +202,11 @@ const [loadShow, loadShowToggle] = useToggle(false);
 const onBack = () => {
     router.push({ name: 'person' })
 }
-let countTime = ref(15)
+let countTime = ref(10)
 // let countTime = ref(0)
 const countdown = (isRun: Boolean) => {
     if (isRun == true) {
-        countTime.value = 15;  //初始化60秒倒计时
+        countTime.value = 10;  //初始化60秒倒计时
         // countTime.value = 0;  //初始化60秒倒计时
     }
     else {
