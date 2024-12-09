@@ -74,7 +74,7 @@
                     已签署
                 </div>
                 <div class="button">
-                    <a :href="wordUrl" download="在读证明模板.docx">下载</a>
+                    <a :href="wordUrl" target="_blank" download="在读证明模板.docx">下载</a>
                 </div>
             </div>
 

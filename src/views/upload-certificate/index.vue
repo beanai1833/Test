@@ -21,9 +21,12 @@
                             <a v-if="item.type == 1709 && !isIOS" :href="wordUrl" download="不随行父母同意函模板.docx">下载</a>
                             <a v-if="item.type == 1710 && isIOS" href="#" @click="downloadPdf(studyWordUrl,'在读证明模板')">下载</a>
                             <a v-if="item.type == 1710 && !isIOS" :href="studyWordUrl" download="在读证明模板.docx">下载</a> -->
-                            <a v-if="item.type == 1709" :href="wordUrl" download="不随行父母同意函模板.docx">下载</a>
-                            <a v-if="item.type == 1710" :href="studyWordUrl" download="在读证明模板.docx">下载</a>
-                            <a v-if="item.type == 1589" :href="inServiceWordUrl" download="在职证明模板.docx">下载</a>
+                            <a v-if="item.type == 1709" target="_blank" :href="wordUrl"
+                                download="不随行父母同意函模板.docx">下载</a>
+                            <a v-if="item.type == 1710" target="_blank" :href="studyWordUrl"
+                                download="在读证明模板.docx">下载</a>
+                            <a v-if="item.type == 1589" target="_blank" :href="inServiceWordUrl"
+                                download="在职证明模板.docx">下载</a>
                             <!-- <a v-if="item.type == 1589" :href="inServiceWordUrl" download="在职证明模板.docx">下载</a> -->
                         </div>
                     </div>
