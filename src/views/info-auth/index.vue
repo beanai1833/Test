@@ -99,7 +99,8 @@
                 </van-checkbox>
             </div>
             <van-button @click="toNext" block type="primary" loading-type="circular" loading-size="24px"
-                :disabled="!checked || countTime > 0 || !sollEnd">
+                :disabled="!checked || countTime > 0 || !sollEnd"
+                :color="(!checked || countTime > 0 || !sollEnd) ? '#999999' : ''">
                 下一步 <span v-if="countTime > 0">（{{ countTime }}）</span>
             </van-button>
         </div>
@@ -145,7 +146,7 @@ onMounted(() => {
 const onScroll = (e: Event) => {
     console.log(e);
     const { scrollTop, scrollHeight, clientHeight } = e.target as any;
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (scrollHeight - (scrollTop + clientHeight) <= 180) {
         console.log('滚动到底部了');
         sollEnd.value = true;
     }
@@ -167,7 +168,7 @@ const toNext = () => {
 <style scoped lang="less">
 .page-body {
     font-size: 12px;
-    padding-bottom: 170px;
+    padding-bottom: 200px;
     color: #333;
     background-color: #fff;
     overflow: auto;

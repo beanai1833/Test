@@ -107,12 +107,17 @@
 
       // 如果是PC，显示 iframe
       const iframe = document.createElement('iframe');
-      let src = 'https://amway2025mel.mmice.com.cn/';
+      // let src = 'https://amway2025mel.mmice.com.cn/';
+      src = window.location.origin;
       if (window.location.href.indexOf('-uat') !== -1 || window.location.href.indexOf('localhost') !== -1) {
         src = "https://amway2025mel-uat.mmice.com.cn/";  // 替换成你想要加载的PC内容URL
+        // src = window.location.origin;  // 替换成你想要加载的PC内容URL
       }
 
-      iframe.src = src;  // 替换成你想要加载的PC内容URL
+      console.log(window.location, window.location.pathname, 'pathnamepathnamepathname');
+
+
+      iframe.src = src + window.location.pathname;  // 替换成你想要加载的PC内容URL
 
       // iframe.src = "https://amway2025mel-uat.mmice.com.cn/";  // 替换成你想要加载的PC内容URL
       iframe.style.border = "1px solid black";

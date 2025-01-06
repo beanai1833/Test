@@ -65,7 +65,7 @@
                     </van-checkbox>
                 </div>
                 <van-button @click="showToggle(true)" block type="primary" loading-type="circular" loading-size="24px"
-                    :disabled="!checked || countTime > 0">
+                    :disabled="!checked || countTime > 0" :color="(!checked || countTime > 0) ? '#999999' : ''">
                     签字<span v-show="countTime > 0">（{{ countTime }}）</span>
                 </van-button>
             </div>

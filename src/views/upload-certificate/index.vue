@@ -32,9 +32,8 @@
                     </div>
                     <div class=" " style="width: 100px;overflow: hidden;">
                         <p @click="toViewPdf(item.fileUrl, item.fileName)" class="font14 mg-b10"
-                            style="color: rgb(1, 145, 255);text-align: end; text-wrap: wrap;">
-                            {{ subStrName(item.fileName) }} <span
-                                v-if="item.fileName && item.fileName.trim() !== ''">.pdf</span>
+                            style="color: rgb(1, 145, 255);text-align: end; text-wrap: wrap;word-break: break-all">
+                            {{ item.fileName }}
                         </p>
 
                         <div class="text-right">
@@ -105,7 +104,8 @@
                                 <p>2）护照有效期需至行程结束后6个月，即2025年11月10日之后；</p>
                                 <p>3）护照至少需保留两页空白签证页（不含备注页），新版电子护照无需签名；</p>
                                 <p>4）所有页面需扫描保存为一个PDF文档，且页面必须清晰完整，不歪斜，无杂物（不可以拍照）。</p>
-                                <p style="background-color:yellow ;display: inline-block;">如有旧护照请一并扫描提供</p>
+
+                                <!-- <p style="background-color:yellow ;display: inline-block;">如有旧护照请一并扫描提供</p> -->
                             </div>
                         </div>
                         <div v-show="typeMsg == 1583">
@@ -439,11 +439,6 @@ let inServiceWordUrl = 'https://mice-amway2025mel-oss.mmice.com.cn/doc/InService
 //         xhr.send();
 //     }
 
-const subStrName = (str?: string) => {
-    if (!str || str.trim() == '') return '';
-    let baseName = str.substring(0, str.indexOf('.pdf'));
-    return baseName;
-}
 
 let isIOS = ref(true)
 onMounted(() => {
@@ -452,17 +447,30 @@ onMounted(() => {
     isIOS.value = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);   //判断是否是 iOS终端
 })
 
+
+// const onOversize = (file: File | File[]) => {
+//     console.log(file);
+//     showToast('文件大小不能超过 100MB！');
+// };
+
 // 拦截
 const beforeRead = (file: File | File[], type: number) => {
     const _file = file as File;
-    console.log(file, type, '111111111111');
     showToggle(false)
     const canUpType: string[] = ['application/pdf'];
 
-    if (!canUpType.includes(_file.type)) {
+    const maxSize = 100 * 1000 * 1024;
+
+    console.log(file, _file.size > maxSize, type, '111111111111');
+
+    if (_file.size > maxSize) {
+        showToast('文件大小不能超过 100MB！');
+        return false;
+    } else if (!canUpType.includes(_file.type)) {
         showToast('请上传pdf格式文件');
         return false;
     }
+
     const toast1 = showLoadingToast({
         message: '上传中...',
         forbidClick: true,
